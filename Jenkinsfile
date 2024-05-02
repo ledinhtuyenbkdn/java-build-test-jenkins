@@ -39,7 +39,7 @@ DB_ENGINE    = 'sqlite'
                 sh "curl --location 'https://api.telegram.org/bot7054825505:AAFxdWRaJBnmsq1LbGIoLWmrsr4kRfODPVo/sendDocument' \
                     --form 'chat_id=\"-1002114838090\"' \
                     --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
-                    --form 'caption=\"Text Message with attachment\"'"
+                    --form 'caption=\" *Test Summary* - ${summary.totalCount}, Failures: ${summary.failCount}, Skipped: ${summary.skipCount}, Passed: ${summary.passCount}\"'"
             }
         }
 
