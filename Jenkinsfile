@@ -36,6 +36,10 @@ DB_ENGINE    = 'sqlite'
 
                 // Compose message for Telegram
                 echo 'totalcount: ' + summary.totalCount
+                sh "curl --location 'https://api.telegram.org/bot7054825505:AAFxdWRaJBnmsq1LbGIoLWmrsr4kRfODPVo/sendDocument' \
+                    --form 'chat_id=\"-1002114838090\"' \
+                    --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
+                    --form 'caption=\"Text Message with attachment\"'"
             }
         }
 
