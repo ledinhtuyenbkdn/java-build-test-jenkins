@@ -36,7 +36,7 @@ DB_ENGINE    = 'sqlite'
                 def summary = junit testResults: 'target/surefire-reports/TEST-*.xml'
 
                 // Compose message for Telegram
-                withCredentials([string(credentialsId: 'your-telegram-bot-credential-id', variable: 'TELEGRAM_BOT_TOKEN')]) {
+                withCredentials([string(credentialsId: 'telegram_bot_token', variable: 'TELEGRAM_BOT_TOKEN')]) {
                 sh "curl --location 'https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument' \
                                     --form 'chat_id=\"-1002114838090\"' \
                                     --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
