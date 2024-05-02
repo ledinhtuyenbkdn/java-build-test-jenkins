@@ -31,9 +31,6 @@ DB_ENGINE    = 'sqlite'
         always {
             // Archive generated artifacts
             junit 'target/surefire-reports/*.xml'
-        }
-
-        success {
             script {
                 def summary = junit testResults: 'target/surefire-reports/TEST-*.xml'
 
@@ -42,8 +39,11 @@ DB_ENGINE    = 'sqlite'
             }
         }
 
+        success {
+            echo 'Build success! Check logs for details.'
+        }
+
         failure {
-            // Send notification or take corrective action on build failure
             echo 'Build failed! Check logs for details.'
         }
     }
