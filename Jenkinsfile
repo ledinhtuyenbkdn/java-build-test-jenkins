@@ -37,7 +37,7 @@ TELEGRAM_BOT_TOKEN     = credentials('telegram_bot_token')
 
                 // Compose message for Telegram
                 echo 'totalcount: ' + summary.totalCount
-                sh "curl --location 'https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument' \
+                sh "curl --location 'https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument' \
                     --form 'chat_id=\"-1002114838090\"' \
                     --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
                     --form 'caption=\" Total: ${summary.totalCount}, Failures: ${summary.failCount}, Skipped: ${summary.skipCount}, Passed: ${summary.passCount}\"'"
