@@ -7,6 +7,7 @@ jdk 'Java 17'
 environment {
 JAVA_HOME = '/var/jenkins_home/tools/hudson.model.JDK/Java_17/jdk-17.0.10/bin'
 DB_ENGINE    = 'sqlite'
+TELEGRAM_BOT_TOKEN     = credentials('telegram_bot_token')
 }
 
     stages {
@@ -36,7 +37,7 @@ DB_ENGINE    = 'sqlite'
 
                 // Compose message for Telegram
                 echo 'totalcount: ' + summary.totalCount
-                sh "curl --location 'https://api.telegram.org/bot7054825505:AAFxdWRaJBnmsq1LbGIoLWmrsr4kRfODPVo/sendDocument' \
+                sh "curl --location 'https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument' \
                     --form 'chat_id=\"-1002114838090\"' \
                     --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
                     --form 'caption=\" Total: ${summary.totalCount}, Failures: ${summary.failCount}, Skipped: ${summary.skipCount}, Passed: ${summary.passCount}\"'"
