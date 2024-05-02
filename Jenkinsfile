@@ -15,9 +15,13 @@ DB_ENGINE    = 'sqlite'
                 git branch: 'main', url: 'https://github.com/ledinhtuyenbkdn/java-build-test-jenkins.git'
             }
         }
-         stage('Test') {
+        stage('Clean') {
             steps {
-                // Run tests using Maven
+                sh 'mvn clean'
+            }
+        }
+        stage('Test') {
+            steps {
                 sh 'mvn test'
             }
         }
@@ -30,12 +34,12 @@ DB_ENGINE    = 'sqlite'
         }
 
         success {
-             script {
-              def summary = junit testResults: 'target/surefire-reports/TEST-*.xml'
+            script {
+                def summary = junit testResults: 'target/surefire-reports/TEST-*.xml'
 
-            // Compose message for Telegram
-            echo 'totalcount: ' + summary.totalCount
-             }
+                // Compose message for Telegram
+                echo 'totalcount: ' + summary.totalCount
+            }
         }
 
         failure {

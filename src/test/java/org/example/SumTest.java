@@ -11,4 +11,10 @@ public class SumTest {
         Sum sum = new Sum();
         assertEquals(sum.sum(1,2), 3);
     }
+
+    @Test
+    public void sumPositiveNumberTest1() {
+        Sum sum = new Sum();
+        assertEquals(sum.sum(1,2), 4);
+    }
 }
