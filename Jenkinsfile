@@ -30,7 +30,7 @@ DB_ENGINE    = 'sqlite'
     post {
         always {
             // Archive generated artifacts
-            junit 'target/surefire-reports/*.xml'
+            junit 'target/surefire-reports/testng-results.xml'
             script {
                 def summary = junit testResults: 'target/surefire-reports/TEST-*.xml'
 
@@ -39,7 +39,7 @@ DB_ENGINE    = 'sqlite'
                 sh "curl --location 'https://api.telegram.org/bot7054825505:AAFxdWRaJBnmsq1LbGIoLWmrsr4kRfODPVo/sendDocument' \
                     --form 'chat_id=\"-1002114838090\"' \
                     --form 'document=@\"target/surefire-reports/emailable-report.html\"' \
-                    --form 'caption=\" *Test Summary* - ${summary.totalCount}, Failures: ${summary.failCount}, Skipped: ${summary.skipCount}, Passed: ${summary.passCount}\"'"
+                    --form 'caption=\" Total: ${summary.totalCount}, Failures: ${summary.failCount}, Skipped: ${summary.skipCount}, Passed: ${summary.passCount}\"'"
             }
         }
 
